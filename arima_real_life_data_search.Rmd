@@ -42,7 +42,7 @@ forecast::arimaorder(auto)
 
 ```{r define_parameters, include=TRUE}
 
-l <- 28
+l <- 18
 n <- length(ts2)
 b <- 1 + (n - l)
 lb <- seq(b)
@@ -78,6 +78,7 @@ ARIMAORDER <- foreach::foreach(b = 1:length(lb), .combine = 'cbind', .packages =
 df <- t(ARIMAORDER)
 rownames(df) <- lb
 df <- data.frame(df)
+df
 dplyr::filter(df, p == 1, d == 1, q == 1)
 
 starts <- lubridate::my(11985) + lubridate::dmonths(40)
