@@ -434,16 +434,18 @@ df
  9     2     0     0
 10     2     0     0
 # ... with 347 more rows
-dplyr::filter(df, p == 1, d == 1, q == 1)
+df |&gt;
+  dplyr::filter(p == 1, d == 1, q == 1)
 # A tibble: 1 x 3
       p     d     q
   &lt;int&gt; &lt;int&gt; &lt;int&gt;
 1     1     1     1
-dplyr::row_number(dplyr::filter(df, p == 1, d == 1, q == 1))
-p d q 
-1 2 3 
+#dplyr::row_number(dplyr::filter(df, p == 1, d == 1, q == 1))
 
-starts &lt;- lubridate::my(11985) + lubridate::dmonths(40)
+start1 &lt;- df |&gt;
+  with(which(p == 1 &amp; d == 1 &amp; q == 1))
+
+starts &lt;- lubridate::my(11985) + lubridate::dmonths(start1)
 
 ts1 &lt;- ts(ts2, start = starts, frequency = 12) # The large vector is coaxed to time series data
 #ts &lt;- subset(ts1, start = c(1987, 6), end = c(1989, 10)) # subsetting time series data
