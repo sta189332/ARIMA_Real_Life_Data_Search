@@ -70,6 +70,10 @@ ARIMAORDER <- foreach::foreach(b = 1:length(lb), .combine = 'cbind', .packages =
 
 ## Test the Function
 
+### Dealing with Date
+
+[Dealing with Date Can be Studied Here](https://rstudio-pubs-static.s3.amazonaws.com/627576_c450b47cccbe46fbbf1daa713c9bd1bf.html)
+
 ```{r test_function}
 df <- t(ARIMAORDER)
 rownames(df) <- lb

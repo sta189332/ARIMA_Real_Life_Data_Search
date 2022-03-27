@@ -412,6 +412,10 @@ ARIMAORDER &lt;- foreach::foreach(b = 1:length(lb), .combine = &#39;cbind&#39;, 
 </div>
 <div id="test-the-function" class="section level2">
 <h2>Test the Function</h2>
+<div id="dealing-with-date" class="section level3">
+<h3>Dealing with Date</h3>
+<p><a href="https://rstudio-pubs-static.s3.amazonaws.com/627576_c450b47cccbe46fbbf1daa713c9bd1bf.html">Dealing
+with Date Can be Studied Here</a></p>
 <pre class="r"><code>df &lt;- t(ARIMAORDER)
 rownames(df) &lt;- lb
 df &lt;- data.frame(df)
@@ -445,6 +449,7 @@ tseries::adf.test(ts1)
 data:  ts1
 Dickey-Fuller = -2.3819, Lag order = 7, p-value = 0.4158
 alternative hypothesis: stationary</code></pre>
+</div>
 </div>
 
 
