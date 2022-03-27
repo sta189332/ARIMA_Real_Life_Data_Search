@@ -20,6 +20,7 @@ library(pacman)
 p_load(foreach)
 p_load(forecast)
 p_load(lubridate)
+p_load(tibble)
 ```
 
 ## Add a Real-Life Time Series Data
@@ -42,7 +43,7 @@ forecast::arimaorder(auto)
 
 ```{r define_parameters, include=TRUE}
 
-l <- 18
+l <- 25
 n <- length(ts2)
 b <- 1 + (n - l)
 lb <- seq(b)
@@ -74,12 +75,16 @@ ARIMAORDER <- foreach::foreach(b = 1:length(lb), .combine = 'cbind', .packages =
 
 [Dealing with Date Can be Studied Here](https://rstudio-pubs-static.s3.amazonaws.com/627576_c450b47cccbe46fbbf1daa713c9bd1bf.html)
 
-```{r test_function}
+```{r test_function, include = TRUE}
 df <- t(ARIMAORDER)
 rownames(df) <- lb
-df <- data.frame(df)
+df <- tibble::as_tibble(df) # turns matrix to tibble
 df
 dplyr::filter(df, p == 1, d == 1, q == 1)
+dplyr::row_number(dplyr::filter(df, p == 1, d == 1, q == 1))
+
+df |>
+  with(which(p == 1 & d == 1 & q == 1))
 
 starts <- lubridate::my(11985) + lubridate::dmonths(40)
 
